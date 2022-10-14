@@ -13,7 +13,7 @@ import {
   AiOutlineFundProjectionScreen,
   AiOutlineUser,
 } from "react-icons/ai";
-
+import {RiContactsBook2Line} from "react-icons/ri"
 import { CgFileDocument } from "react-icons/cg";
 
 function NavBar() {
@@ -94,11 +94,21 @@ function NavBar() {
 
             <Nav.Item>
               <Nav.Link
-                href="#"
+                href="https://blog.saidmurod.uz"
                 target="_blank"
                 rel="noreferrer"
               >
                 <ImBlog style={{ marginBottom: "2px" }} /> Blogs
+              </Nav.Link>
+            </Nav.Item>
+
+            <Nav.Item>
+              <Nav.Link
+                href="https://linktr.ee/Saidmurodjon"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <RiContactsBook2Line style={{ marginBottom: "2px" }} /> Contact
               </Nav.Link>
             </Nav.Item>
 
@@ -112,6 +122,7 @@ function NavBar() {
                 <AiFillStar style={{ fontSize: "1.1em" }} />
               </Button>
             </Nav.Item>
+            
           </Nav>
         </Navbar.Collapse>
       </Container>
