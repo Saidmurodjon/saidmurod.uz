@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
-import ProjectCard from "./ProjectCards";
 import Particle from "../Particle";
-import Preloader from "./../Pre";
 import config from "../../config.json";
+import laptopImg from "../../Assets/about.png";
+import ContactForm from "./ContactForm";
+
 function Projects() {
   const [data, setData] = useState([]);
   const [next, setNext] = useState({
@@ -15,7 +16,6 @@ function Projects() {
     const Fun = async () => {
       try {
         const res = await axios.get(
-          // "http://localhost:5000/projects?quantity=2&step=1"
           `${config.SERVER_URL}projects?quantity=${next.quantity}&step=${next.step}`
         );
 
@@ -33,7 +33,6 @@ function Projects() {
 
   return (
     <Container fluid className="project-section">
-      <Particle />
       <Container>
         <h1 className="project-heading">
           My Recent <strong className="purple">Works </strong>
@@ -41,22 +40,24 @@ function Projects() {
         <p style={{ color: "white" }}>
           Here are a few projects I've worked on recently.
         </p>
-        <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
-          {data.length > 0 ? (
-            data.map((e) => (
-              <>
-                <Col md={4} className="project-card">
-                  <ProjectCard item={e} />
-                </Col>
-              </>
-            ))
-          ) : (
-            <>
-              <Col md={4} className="project-card">
-                <Spinner animation="border" variant="warning" />
-              </Col>
-            </>
-          )}
+        <Row style={{ justifyContent: "center", padding: "10px" }}>
+          <Col
+            md={7}
+            style={{
+              justifyContent: "center",
+              paddingTop: "30px",
+              paddingBottom: "50px",
+            }}
+          >
+            <ContactForm />
+          </Col>
+          <Col
+            md={5}
+            style={{ paddingTop: "120px", paddingBottom: "50px" }}
+            className="about-img"
+          >
+            <img src={laptopImg} alt="about" className="img-fluid" />
+          </Col>
         </Row>
       </Container>
     </Container>
