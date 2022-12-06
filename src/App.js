@@ -17,6 +17,7 @@ import "./style.css";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Contact from "./components/Contact/Contact"
+import Admin from "./components/Admin/Admin";
 function App() {
   const [load, upadateLoad] = useState(true);
 
@@ -36,6 +37,7 @@ function App() {
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/project" element={<Projects />} />
           <Route path="/about" element={<About />} />
