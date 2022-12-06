@@ -91,6 +91,7 @@ function ContactForm() {
         <Form.Control
           type="text"
           name="fullName"
+          placeholder="Farrukh Aliyev"
           className={`${
             error.fullName ? "border-3 border-danger text-danger" : ""
           }`}
@@ -139,6 +140,7 @@ function ContactForm() {
         </Form.Label>
         <Form.Control
           name="message"
+          placeholder="You can write something"
           className={`${
             error.message ? "border-3 border-danger text-danger" : ""
           }`}

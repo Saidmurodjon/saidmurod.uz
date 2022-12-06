@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
-import Particle from "../Particle";
 import config from "../../config.json";
 import laptopImg from "../../Assets/about.png";
 import ContactForm from "./ContactForm";
@@ -35,10 +34,10 @@ function Projects() {
     <Container fluid className="project-section">
       <Container>
         <h1 className="project-heading">
-          My Recent <strong className="purple">Works </strong>
+          Contact <strong className="purple">US </strong>
         </h1>
         <p style={{ color: "white" }}>
-          Here are a few projects I've worked on recently.
+          Let's Start Conversation
         </p>
         <Row style={{ justifyContent: "center", padding: "10px" }}>
           <Col
