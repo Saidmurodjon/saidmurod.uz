@@ -13,7 +13,7 @@ import {
   AiOutlineFundProjectionScreen,
   AiOutlineUser,
 } from "react-icons/ai";
-import {RiContactsBook2Line} from "react-icons/ri"
+import { RiContactsBook2Line } from "react-icons/ri";
 import { CgFileDocument } from "react-icons/cg";
 
 function NavBar() {
@@ -104,14 +104,16 @@ function NavBar() {
 
             <Nav.Item>
               <Nav.Link
-                href="https://linktr.ee/Saidmurodjon"
-                target="_blank"
-                rel="noreferrer"
+                // href="https://linktr.ee/Saidmurodjon"
+                as={Link}
+                to="/contact"
+                // rel="noreferrer"
+                onClick={() => updateExpanded(false)}
               >
                 <RiContactsBook2Line style={{ marginBottom: "2px" }} /> Contact
               </Nav.Link>
             </Nav.Item>
-
+          
             <Nav.Item className="fork-btn">
               <Button
                 href="https://github.com/saidmurodjon"
@@ -122,7 +124,6 @@ function NavBar() {
                 <AiFillStar style={{ fontSize: "1.1em" }} />
               </Button>
             </Nav.Item>
-            
           </Nav>
         </Navbar.Collapse>
       </Container>

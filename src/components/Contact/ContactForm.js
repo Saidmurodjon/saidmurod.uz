@@ -1,23 +1,26 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-
+import config from "../../config.json";
+import axios from "axios";
 function ContactForm() {
   const [message, setMessage] = useState({
     fullName: "",
     email: "",
     phone: "+998",
     message: "",
+    date: new Date(),
   });
   const [error, setError] = useState({
     fullName: false,
     email: false,
-    phone: false,
+    phone: null,
     message: false,
   });
   const changeHandler = (e) => {
     setMessage({ ...message, [e.target.name]: e.target.value });
   };
-  const Send = async() => {
+  const Send = async () => {
     const textValid = /^[0-9\b]+$/.test(
       message.fullName.replace(/[^a-zA-Z ]/g, "")
     );
@@ -30,22 +33,47 @@ function ContactForm() {
     );
     const messageValid =
       message.message.replaceAll(/\s/g, "").length > 5 ? true : false;
-    setError({
+    await setError({
       ...error,
       fullName: textValid ? true : !textLength ? true : false,
       email: emailValid ? false : true,
       phone: message.phone.length < 9 ? true : phoneValid ? false : true,
       message: messageValid ? false : true,
     });
-const find=error.find(e=>e===true)
-    await Object.keys(error).forEach(function (key, index) {
-      console.log(error[key]);
-      if (error[key] === true) {
-        return true;
+  };
+  useEffect(() => {
+    if (
+      error.fullName === false &&
+      error.email === false &&
+      error.phone === false &&
+      error.message === false
+    ) {
+      Fun();
+
+      console.log(message);
+    }
+  }, [error]);
+  const Fun = async () => {
+    console.log(message);
+    try {
+      const res = await axios.post(
+        // "http://localhost:5000/projects?quantity=2&step=1"
+        `${config.SERVER_URL}contact`,
+        message
+      );
+      if (res.status === 201) {
+        await alert(`${message.fullName} habaringiz yuborildi.`);
+        setMessage({
+          ...message,
+          fullName: "",
+          email: "",
+          phone: "+998",
+          message: "",
+        });
       }
-    });
-    
-    console.log(find);
+    } catch (err) {
+      console.log(err);
+    }
   };
   // const Validator=()=>{
 
