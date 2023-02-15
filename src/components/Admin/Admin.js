@@ -1,6 +1,5 @@
 const Admin = () => {
-  window.location.href =
-    "https://saidmuroduz-admin-panell.onrender.com/admin/login";
+  window.location.href = process.env.REACT_APP_SERVER_URL;
 };
 
 export default Admin;
