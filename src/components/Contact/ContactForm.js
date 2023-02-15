@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import config from "../../config.json";
 import axios from "axios";
 function ContactForm() {
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
   const [message, setMessage] = useState({
     fullName: "",
     email: "",
@@ -49,16 +49,14 @@ function ContactForm() {
       error.message === false
     ) {
       Fun();
-
-      console.log(message);
     }
+     // eslint-disable-next-line
   }, [error]);
   const Fun = async () => {
     console.log(message);
     try {
       const res = await axios.post(
-        // "http://localhost:5000/projects?quantity=2&step=1"
-        `${config.SERVER_URL}contact`,
+        `${SERVER_URL}contact`,
         message
       );
       if (res.status === 201) {
@@ -78,7 +76,6 @@ function ContactForm() {
   // const Validator=()=>{
 
   // }
-  console.log(error);
 
   return (
     <Form onSubmit={(e) => e.preventDefault()}>
@@ -91,7 +88,7 @@ function ContactForm() {
         <Form.Control
           type="text"
           name="fullName"
-          placeholder="Farrukh Aliyev"
+          placeholder="Your name"
           className={`${
             error.fullName ? "border-3 border-danger text-danger" : ""
           }`}
@@ -112,7 +109,7 @@ function ContactForm() {
             error.email ? "border-3 border-danger text-danger" : ""
           }`}
           onChange={changeHandler}
-          placeholder="name@example.com"
+          placeholder="Your email"
           value={message.email}
         />
       </Form.Group>
@@ -140,7 +137,7 @@ function ContactForm() {
         </Form.Label>
         <Form.Control
           name="message"
-          placeholder="You can write something"
+          placeholder="Your message"
           className={`${
             error.message ? "border-3 border-danger text-danger" : ""
           }`}

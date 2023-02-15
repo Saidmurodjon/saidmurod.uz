@@ -3,9 +3,8 @@ import axios from "axios";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
 import Particle from "../Particle";
-import Preloader from "./../Pre";
-import config from "../../config.json";
 function Projects() {
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
   const [data, setData] = useState([]);
   const [next, setNext] = useState({
     quantity: 1,
@@ -16,7 +15,7 @@ function Projects() {
       try {
         const res = await axios.get(
           // "http://localhost:5000/projects?quantity=2&step=1"
-          `${config.SERVER_URL}projects?quantity=${next.quantity}&step=${next.step}`
+          `${SERVER_URL}projects?quantity=${next.quantity}&step=${next.step}`
         );
 
         if (res.status === 200) {
@@ -29,8 +28,6 @@ function Projects() {
     };
     Fun();
   }, [next]);
-  console.log(data);
-
   return (
     <Container fluid className="project-section">
       <Particle />
@@ -42,8 +39,8 @@ function Projects() {
           Here are a few projects I've worked on recently.
         </p>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
-          {data.length > 0 ? (
-            data.map((e) => (
+          {data?.length > 0 ? (
+            data?.map((e) => (
               <>
                 <Col md={4} className="project-card">
                   <ProjectCard item={e} />
